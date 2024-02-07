@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "chatbot-whith-ai-alura"
+version = "0.1.0"
+description = ""
+authors = ["MARCIO RIBEIRO DE OLIVEIRA <marcio035@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.26.4"
+openai = "^1.11.1"
+python-dotenv = "^1.0.1"
+tiktoken = "^0.5.2"
+flask = "^3.0.2"
+opencv-python = "^4.9.0.80"
+uuid = "^1.30"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
