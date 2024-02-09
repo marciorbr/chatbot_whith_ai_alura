@@ -6,6 +6,7 @@ from time import sleep
 
 from helpers import carrega
 from selecionar_persona import selecionar_persona, personas
+from selecionar_documento import selecionar_contexto, selecionar_documento
 
 load_dotenv()
 
@@ -15,13 +16,13 @@ modelo = "gpt-4"
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
-contexto = carrega("dados/ecomart.txt")
-
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
 
+    contexto = selecionar_contexto(prompt)
     personalidade = personas[selecionar_persona(prompt)]
+    documento_selecionado = selecionar_documento(contexto)
 
     while True:
         try:
@@ -32,7 +33,7 @@ def bot(prompt):
             Você deve adotar a persona abaixo.
             
             # Contexto
-            {contexto}
+            {documento_selecionado}
 
             # Persona
             {personalidade}
