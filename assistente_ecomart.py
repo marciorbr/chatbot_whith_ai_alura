@@ -57,3 +57,7 @@ while run.status !="completed":
 historico = cliente.beta.threads.messages.list(thread_id=thread.id).data
 for mensagem in reversed(historico):
     print(f"role: {mensagem.role}\nConteúdo: {mensagem.content[0].text.value}")
+
+
+# cliente.beta.assistants.delete(assistant_id=assistente.id) # Apagar assistente
+# cliente.beta.threads.delete(thread_id=thread.id) # Apagar Thread depois do uso
