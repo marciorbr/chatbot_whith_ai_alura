@@ -4,6 +4,7 @@ import os
 from time import sleep
 from helpers import *
 from selecionar_persona import *
+import json
 
 load_dotenv()
 
@@ -35,6 +36,7 @@ def criar_lista_ids():
 
         return lista_ids_arquivos
 
+
 def pegar_json():
         filename = "assistentes.json"
 
@@ -48,6 +50,16 @@ def pegar_json():
                         "file_ids": file_id_list
                 }
 
+                with open(filename, "w", encoding="utf-8") as file:
+                        json.dump(data, file, ensure_ascii=False, indent=4)
+                print("Arquivo 'assistentes.json' criado com sucesso.")
+
+        try:
+                with open(filename, "r", encoding="utf-8") as file:
+                        data = json.load(file)
+                        return data
+        except FileNotFoundError:
+                print("Arquivo 'assistentes.json' não encontrado.")
 
 
 def criar_thread():
