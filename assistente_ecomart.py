@@ -65,23 +65,19 @@ def pegar_json():
 def criar_thread():
     return cliente.beta.threads.create()
 
-def criar_assistente():
-    assistente = cliente.beta.assistants.create(
-        name="Atendente EcoMart",
-        instructions = f"""
-                Você é um chatbot de atendimento a clientes de um e-commerce. 
-                Você não deve responder perguntas que não sejam dados do ecommerce informado!
-                Além disso, adote a persona abaixo para respondero ao cliente.
-                
-                ## Contexto
-                {contexto}
+def criar_assistente(file_ids=[]):
+        assistente = cliente.beta.assistants.create(
+                name="Atendente EcoMart",
+                instructions = f"""
+                                Você é um chatbot de atendimento a clientes de um e-commerce. 
+                                Você não deve responder perguntas que não sejam dados do ecommerce informado!
+                                Além disso, acesse os arquivos associados a você e a thread para responder as perguntas.
+                                """,
+                model = modelo,
+                file_ids = file_ids
+        )
+        return assistente
 
-                ## Persona
-                {personas["neutro"]}
-                """,
-        model = modelo
-    )
-    return assistente
 
 
 # thread = cliente.beta.threads.create(
