@@ -35,6 +35,19 @@ def criar_lista_ids():
 
         return lista_ids_arquivos
 
+def pegar_json():
+        filename = "assistentes.json"
+
+        if not os.path.exists(filename):
+                thread_id = criar_thread()
+                file_id_list = criar_lista_ids()
+                assistant_id = criar_assistente(file_id_list)
+                data = {
+                        "assistant_id": assistant_id.id,
+                        "thread_id": thread_id.id,
+                        "file_ids": file_id_list
+                }
+
 
 
 def criar_thread():
